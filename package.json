@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https:git@github.com:zp-templates/typescript-project-template.git"
+    "url": "https:git@github.com:zp-bots-telegram/elite-live-golf-bot.git"
   },
   "description": "",
   "main": "src/index.ts",
