@@ -6,13 +6,13 @@
     "url": "https:git@github.com:zp-bots-telegram/elite-live-golf-bot.git"
   },
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/handler.ts",
   "scripts": {
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier:format": "prettier --config .prettierrc \"src/**/*.ts\" --write",
-    "start": "node build/index.js",
+    "start": "node build/handler.js",
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

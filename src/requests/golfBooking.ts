@@ -1,4 +1,4 @@
-import rp, { RequestPromise, RequestPromiseOptions } from 'request-promise';
+import { RequestPromise, RequestPromiseOptions } from 'request-promise';
 import $ from 'cheerio';
 import { RequestAPI, RequiredUriUrl } from 'request';
 
@@ -40,8 +40,8 @@ export async function getBookings(
     'https://www.e-s-p.com/elitelive/book_history.php'
   );
   if ($('title', html).text() !== 'Booking History') return [];
-  let bookings = $('#BookHistory tbody tr', html);
-  let parsedBookings: Booking[] = [];
+  const bookings = $('#BookHistory tbody tr', html);
+  const parsedBookings: Booking[] = [];
   bookings.each((i, booking) => {
     const bookingDetails = $('td', booking);
     const dateString = bookingDetails.eq(0).html() ?? 'undefined';
