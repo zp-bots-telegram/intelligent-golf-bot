@@ -4,16 +4,17 @@
   "env": {
     "node": true
   },
-  "plugins": [
-    "@typescript-eslint",
-    "prettier"
-  ],
-  "extends": [
-    "plugin:shopify/esnext",
-    "prettier"
-  ],
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": ["plugin:shopify/esnext", "prettier"],
   "rules": {
     "no-console": 1,
     "prettier/prettier": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

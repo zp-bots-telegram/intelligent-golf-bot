@@ -6,13 +6,13 @@
     "url": "https:git@github.com:zp-bots-telegram/elite-live-golf-bot.git"
   },
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/handler.ts",
   "scripts": {
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier:format": "prettier --config .prettierrc \"src/**/*.ts\" --write",
-    "start": "node build/index.js",
+    "start": "node build/handler.js",
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,12 @@
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.1",
+    "@types/cheerio": "^0.22.29",
+    "@types/dotenv": "^8.2.0",
     "@types/node": "^15.0.1",
+    "@types/node-telegram-bot-api": "^0.51.1",
+    "@types/request": "^2.48.5",
+    "@types/request-promise": "^4.1.47",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.25.0",
@@ -36,5 +41,12 @@
     "semantic-release": "^17.4.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^10.0.0",
+    "node-telegram-bot-api": "^0.53.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }
