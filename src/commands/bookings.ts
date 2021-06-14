@@ -10,13 +10,17 @@ export function bookings(telegramBot: TelegramBot) {
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
+    if (!msg.from) {
+      return;
+    }
+
     await init(request);
-    await login(request);
+    await login(request, { userId: msg.from.id });
     const bookingsResponse = await getBookings(request);
 
     let message = '<b>Bookings</b>';
 
-    bookingsResponse.forEach((booking) => {
+    bookingsResponse.forEach((booking) =>
       message += `\n\n<b>Date:</b> ${booking.date}\n<b>Course:</b> ${
         booking.course
       }\n<b>Participants:</b> ${booking.participants.join(', ')}`;

@@ -10,7 +10,10 @@ export async function init(
 }
 
 export async function login(
-  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>
+  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
+  args: {
+    userId: number;
+  }
 ): Promise<Boolean> {
   const options: RequestPromiseOptions = {
     method: 'POST',
