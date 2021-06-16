@@ -7,7 +7,7 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": ["plugin:shopify/esnext", "prettier"],
   "rules": {
-    "no-console": 1,
+    "no-console": 0,
     "prettier/prettier": 2
   },
   "settings": {

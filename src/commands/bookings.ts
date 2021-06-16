@@ -20,11 +20,12 @@ export function bookings(telegramBot: TelegramBot) {
 
     let message = '<b>Bookings</b>';
 
-    bookingsResponse.forEach((booking) =>
-      message += `\n\n<b>Date:</b> ${booking.date}\n<b>Course:</b> ${
-        booking.course
-      }\n<b>Participants:</b> ${booking.participants.join(', ')}`;
-    });
+    bookingsResponse.forEach(
+      (booking) =>
+        (message += `\n\n<b>Date:</b> ${booking.date}\n<b>Course:</b> ${
+          booking.course
+        }\n<b>Participants:</b> ${booking.participants.join(', ')}`)
+    );
 
     await telegramBot.sendMessage(chatId, message, { parse_mode: 'HTML' });
   });
