@@ -2,7 +2,8 @@
 import TelegramBot from 'node-telegram-bot-api';
 import dotenv from 'dotenv';
 
-import { bookings } from './commands';
+import { bookingsCommand } from './commands';
+import { loginCommand } from './commands/login';
 
 // eslint-disable-next-line require-await
 export async function handler() {
@@ -17,7 +18,8 @@ export async function handler() {
 }
 
 function registerCommands(bot: TelegramBot) {
-  bookings(bot);
+  bookingsCommand(bot);
+  loginCommand(bot);
 }
 
 handler()
