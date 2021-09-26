@@ -1,5 +1,17 @@
 Change log
 
+# [1.1.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.0.0...v1.1.0) (2021-09-26)
+
+
+### Bug Fixes
+
+* update loginCache atomically ([4fa9ee6](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/4fa9ee67f7256f4e0f800df9c63cc9145c3f7042))
+
+
+### Features
+
+* login command and new booking api ([#2](https://github.com/zp-bots-telegram/elite-live-golf-bot/issues/2)) ([d236972](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/d236972c55e9b9fbccedd2a90fa96f877012824c))
+
 # 1.0.0 (2021-06-12)
 
 
