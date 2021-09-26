@@ -1,58 +1,59 @@
 /* eslint-disable no-template-curly-in-string */
 module.exports = {
-  branches: [{ name: "master" }],
-  tagFormat: "v${version}",
+  branches: [{ name: 'master' }],
+  tagFormat: 'v${version}',
   plugins: [
     [
-      "@semantic-release/commit-analyzer",
+      '@semantic-release/commit-analyzer',
       {
-        preset: "angular",
+        preset: 'angular',
         releaseRules: [
-          { breaking: true, release: "major" },
-          { revert: true, release: "patch" },
-          { type: "feat", release: "minor" },
-          { type: "fix", release: "patch" },
-          { type: "docs", scope: "README", release: "patch" },
-          { type: "perf", release: "patch" },
-          { type: "refactor", release: "patch" },
+          { breaking: true, release: 'major' },
+          { revert: true, release: 'patch' },
+          { type: 'feat', release: 'minor' },
+          { type: 'fix', release: 'patch' },
+          { type: 'docs', scope: 'README', release: 'patch' },
+          { type: 'perf', release: 'patch' },
+          { type: 'refactor', release: 'patch' }
         ],
         parserOpts: {
-          noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"],
-        },
-      },
+          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
+        }
+      }
     ],
     [
-      "@semantic-release/release-notes-generator",
+      '@semantic-release/release-notes-generator',
       {
-        preset: "angular",
+        preset: 'angular',
         parserOpts: {
-          noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES", "BREAKING"],
+          noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES', 'BREAKING']
         },
         writerOpts: {
-          commitsSort: ["subject", "scope"],
-        },
-      },
+          commitsSort: ['subject', 'scope']
+        }
+      }
     ],
     [
-      "@semantic-release/changelog",
+      '@semantic-release/changelog',
       {
-        changelogFile: "CHANGELOG.md",
-        changelogTitle: "Change log",
-      },
+        changelogFile: 'CHANGELOG.md',
+        changelogTitle: 'Change log'
+      }
     ],
     [
-      "@semantic-release/npm",
+      '@semantic-release/npm',
       {
-        npmPublish: false,
-      },
+        npmPublish: false
+      }
     ],
-    "@semantic-release/github",
+    '@semantic-release/github',
     [
-      "@semantic-release/git",
+      '@semantic-release/git',
       {
-        assets: ["CHANGELOG.md", "package.json", "package-lock.json"],
-        message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
-      },
-    ],
-  ],
+        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json'],
+        message:
+          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+      }
+    ]
+  ]
 };

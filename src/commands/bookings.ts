@@ -1,25 +1,37 @@
-/* eslint-disable babel/camelcase */
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 import rp from 'request-promise';
 
-import { getBookings, init, login } from '../requests/golfBooking';
+import { getBookings, login } from '../requests/golfBooking';
+import { getLogin } from '../storage/logins';
 
-export function bookings(telegramBot: TelegramBot) {
+export function bookingsCommand(telegramBot: TelegramBot) {
   telegramBot.onText(/\/bookings/, async (msg: Message) => {
     const chatId = msg.chat.id;
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
-    await init(request);
-    await login(request);
+    if (!msg.from) {
+      return;
+    }
+
+    const credentials = await getLogin(msg.from.id);
+    await login(request, {
+      userId: msg.from.id,
+      username: credentials.username,
+      password: credentials.password
+    });
     const bookingsResponse = await getBookings(request);
 
     let message = '<b>Bookings</b>';
 
     bookingsResponse.forEach((booking) => {
-      message += `\n\n<b>Date:</b> ${booking.date}\n<b>Course:</b> ${
-        booking.course
-      }\n<b>Participants:</b> ${booking.participants.join(', ')}`;
+      const details = booking.moreDetails;
+
+      message += `\n\n<b>Date:</b> ${booking.date}\n<b>Time: </b> ${
+        booking.time
+      }\n<b>Course:</b> ${
+        details.startingTee.split(' ')[0]
+      }\n<b>Participants:</b> ${details.participants.join(', ')}`;
     });
 
     await telegramBot.sendMessage(chatId, message, { parse_mode: 'HTML' });

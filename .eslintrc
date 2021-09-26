@@ -7,11 +7,14 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "extends": ["plugin:shopify/esnext", "prettier"],
   "rules": {
-    "no-console": 1,
-    "prettier/prettier": 2
+    "no-console": 0,
+    "prettier/prettier": 2,
+    "no-process-env": 0,
+    "babel/camelcase": 0
   },
   "settings": {
     "import/resolver": {
+      "typescript": {},
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
