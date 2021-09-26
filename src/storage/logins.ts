@@ -34,7 +34,8 @@ async function load(): Promise<Logins> {
 
 async function getLogins(): Promise<Logins> {
   if (!loginCache) {
-    loginCache = await load();
+    const logins = await load();
+    if (!loginCache) loginCache = logins;
   }
   return loginCache;
 }
