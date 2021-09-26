@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
-import TelegramBot from 'node-telegram-bot-api';
 import dotenv from 'dotenv';
+
+import TelegramBot from 'node-telegram-bot-api';
 
 import { bookingsCommand } from './commands';
 import { loginCommand } from './commands/login';

@@ -1,4 +1,3 @@
-/* eslint-disable require-atomic-updates */
 import { promises, constants } from 'fs';
 
 const fs = promises;

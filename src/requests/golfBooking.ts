@@ -1,5 +1,6 @@
-import { RequestPromise, RequestPromiseOptions } from 'request-promise';
 import $ from 'cheerio';
+
+import { RequestPromise, RequestPromiseOptions } from 'request-promise';
 import { RequestAPI, RequiredUriUrl } from 'request';
 
 export async function login(

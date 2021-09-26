@@ -1,4 +1,3 @@
-/* eslint-disable babel/camelcase */
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 import rp from 'request-promise';
 
