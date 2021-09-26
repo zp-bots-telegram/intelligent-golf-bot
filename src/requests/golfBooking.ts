@@ -106,11 +106,3 @@ export async function getBookingDetails(
     holes
   };
 }
-
-export function convertDate(date: string): Date {
-  const regexp = /([0-9]+)[A-Za-z]+ ([A-Za-z]+) ([0-9]+), ([0-9]+:[0-9]+)/;
-  const match = date.match(regexp);
-  if (match?.length !== 5)
-    throw new Error(`Date Invalid ${date} length was ${match?.length}`);
-  return new Date(`${match[1]} ${match[2]} ${match[3]} ${match[4]}`);
-}
