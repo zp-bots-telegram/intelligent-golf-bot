@@ -8,12 +8,12 @@ import { availableTimesCommand } from './commands/availableTimes';
 
 // eslint-disable-next-line require-await
 export async function handler() {
-  const env = dotenv.config().parsed;
-  if (!env?.BOT_TOKEN) {
+  dotenv.config();
+  if (!process.env.BOT_TOKEN) {
     throw new Error('BOT_TOKEN was undefined');
   }
 
-  const bot = new TelegramBot(env.BOT_TOKEN, { polling: true });
+  const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
   registerCommands(bot);
 }
