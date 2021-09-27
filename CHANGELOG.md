@@ -1,5 +1,12 @@
 Change log
 
+## [1.2.1](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.2.0...v1.2.1) (2021-09-27)
+
+
+### Bug Fixes
+
+* read environment vars from process.env ([ee80ae8](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/ee80ae88754dba41ffac563f24ae44f958027160))
+
 # [1.2.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.1.0...v1.2.0) (2021-09-27)
 
 
