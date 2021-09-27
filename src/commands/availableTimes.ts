@@ -8,7 +8,7 @@ import { getLogin } from '../storage/logins';
 
 export function availableTimesCommand(telegramBot: TelegramBot) {
   telegramBot.onText(
-    /\/availableTimes (Manor|Castle) .*/,
+    /\/availabletimes (Manor|Castle) .*/,
     async (msg: Message, match) => {
       const chatId = msg.chat.id;
 
