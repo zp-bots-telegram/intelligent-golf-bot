@@ -1,5 +1,12 @@
 Change log
 
+# [1.2.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.1.0...v1.2.0) (2021-09-27)
+
+
+### Features
+
+* course availability command ([#3](https://github.com/zp-bots-telegram/elite-live-golf-bot/issues/3)) ([807011e](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/807011ecfad34e31aed46378e337fcd39dde8949))
+
 # [1.1.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.0.0...v1.1.0) (2021-09-26)
 
 
