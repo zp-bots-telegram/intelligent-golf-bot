@@ -16,7 +16,6 @@ export function bookingsCommand(telegramBot: TelegramBot) {
 
     const credentials = await getLogin(msg.from.id);
     await login(request, {
-      userId: msg.from.id,
       username: credentials.username,
       password: credentials.password
     });

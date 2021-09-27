@@ -6,7 +6,6 @@ import { RequestAPI, RequiredUriUrl } from 'request';
 export async function login(
   request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
   args: {
-    userId: number;
     username: string;
     password: string;
   }

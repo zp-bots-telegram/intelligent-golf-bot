@@ -31,7 +31,6 @@ export function loginCommand(telegramBot: TelegramBot) {
       }
 
       const loginResult = await login(request, {
-        userId,
         username,
         password
       });
