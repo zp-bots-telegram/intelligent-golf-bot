@@ -1,5 +1,12 @@
 Change log
 
+## [1.2.2](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.2.1...v1.2.2) (2021-09-27)
+
+
+### Bug Fixes
+
+* lowercase availableTimes command to availabletimes ([e84944f](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/e84944f5e4e154f6c61d25351e2af3bae0bfe148))
+
 ## [1.2.1](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.2.0...v1.2.1) (2021-09-27)
 
 
