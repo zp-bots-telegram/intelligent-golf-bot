@@ -106,3 +106,49 @@ export async function getBookingDetails(
     holes
   };
 }
+
+// eslint-disable-next-line no-shadow
+export enum Course {
+  // eslint-disable-next-line no-unused-vars
+  Manor = 1,
+  // eslint-disable-next-line no-unused-vars
+  Castle = 2
+}
+
+export async function getCourseAvailability(
+  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
+  args: {
+    date: Date;
+    course: Course;
+  }
+): Promise<string[]> {
+  const day = args.date.getDate();
+  const month = args.date.getMonth() + 1;
+  const year = args.date.getFullYear();
+  const date = `${day}-${month}-${year}`;
+  console.log(date);
+  console.log(args.course.valueOf());
+  const options: RequestPromiseOptions = {
+    method: 'GET',
+    baseUrl: 'https://cainhoewood.intelligentgolf.co.uk/',
+    qs: {
+      date,
+      course: args.course.valueOf()
+    }
+  };
+  const html = await request('/memberbooking/', options);
+  console.log(html);
+  const rows = $('tr.cantreserve', html);
+
+  const availableTimes: string[] = [];
+
+  rows.each((i, row) => {
+    const bookingLink = $('a.inlineBooking', row);
+    const time = $('th', row).text();
+    if (bookingLink.length !== 0) {
+      availableTimes.push(time);
+    }
+  });
+
+  return availableTimes;
+}

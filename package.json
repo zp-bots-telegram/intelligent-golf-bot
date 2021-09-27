@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
+    "chrono-node": "^2.3.2",
     "dotenv": "^10.0.0",
     "node-telegram-bot-api": "^0.53.0",
     "request": "^2.88.2",
