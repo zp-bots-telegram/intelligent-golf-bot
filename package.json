@@ -49,6 +49,7 @@
     "dotenv": "^10.0.0",
     "node-telegram-bot-api": "^0.53.0",
     "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "toad-scheduler": "^1.6.0"
   }
 }
