@@ -33,6 +33,14 @@ export function availableTimesCommand(telegramBot: TelegramBot) {
       const date = parseDate(dateString);
 
       const credentials = await getLogin(msg.from.id);
+
+      if (!credentials) {
+        await telegramBot.sendMessage(chatId, 'You are not authenticated', {
+          parse_mode: 'HTML'
+        });
+        return;
+      }
+
       await login(request, {
         username: credentials.username,
         password: credentials.password
