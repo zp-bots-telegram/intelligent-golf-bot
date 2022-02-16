@@ -5,7 +5,7 @@ import { getBookings, login } from '../requests/golfBooking';
 import { getLogin } from '../storage/logins';
 
 export function bookingsCommand(telegramBot: TelegramBot) {
-  telegramBot.onText(/\/bookings/, async (msg: Message) => {
+  telegramBot.onText(/\/bookings/i, async (msg: Message) => {
     const chatId = msg.chat.id;
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });

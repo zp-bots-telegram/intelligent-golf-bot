@@ -6,7 +6,7 @@ import { addLogin } from '../storage/logins';
 
 export function loginCommand(telegramBot: TelegramBot) {
   telegramBot.onText(
-    /\/login (\S+) ([0-9A-Za-z]+)/,
+    /\/login (\S+) ([0-9A-Za-z]+)/i,
     async (msg: Message, match) => {
       const chatId = msg.chat.id;
       if (!msg.from) {
