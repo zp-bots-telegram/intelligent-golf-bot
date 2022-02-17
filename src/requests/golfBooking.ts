@@ -141,6 +141,7 @@ export async function getCourseAvailability(
   rows.each((i, row) => {
     // const bookingLink = $('a.inlineBooking', row);
     const peopleBooked = $('td.tbooked', row);
+    // eslint-disable-next-line shopify/binary-assignment-parens
     const blocked = $('td.tblocked', row).length !== 0;
     const time = $('th', row).text();
     if (peopleBooked.length === 0 && !blocked) {
