@@ -1,5 +1,18 @@
 Change log
 
+# [1.4.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.3.0...v1.4.0) (2022-02-17)
+
+
+### Bug Fixes
+
+* available times should work even if you have a booking on that day ([77176ab](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/77176abc26d23651b647b5a7c9f8fae50878f851))
+* handle lowercase course names on command input ([b929dbf](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/b929dbf76e716e435ba896441cea0736c4d14824))
+
+
+### Features
+
+* allow monitoring multiple courses and time ranges ([ee1b1d5](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/ee1b1d5bf295caa0ece0fde66d53579af9633f66))
+
 # [1.3.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.2.2...v1.3.0) (2022-02-17)
 
 
