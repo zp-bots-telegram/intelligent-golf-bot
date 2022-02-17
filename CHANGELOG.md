@@ -1,5 +1,18 @@
 Change log
 
+# [1.3.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.2.2...v1.3.0) (2022-02-17)
+
+
+### Bug Fixes
+
+* make all commands case insensitive ([59b91eb](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/59b91eb72053d1fb1d358f37e3ce8f1d77d2367f))
+* return failure message frrom all commands if you're not authenticated ([5be6d81](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/5be6d812e66a996608335c7cc24d54431fdced58))
+
+
+### Features
+
+* add command for setting up availability monitor ([e63f0a0](https://github.com/zp-bots-telegram/elite-live-golf-bot/commit/e63f0a0a05d70770abeb7ded278a06fc07163776))
+
 ## [1.2.2](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.2.1...v1.2.2) (2021-09-27)
 
 
