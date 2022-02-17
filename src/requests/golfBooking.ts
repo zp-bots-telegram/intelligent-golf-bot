@@ -139,9 +139,11 @@ export async function getCourseAvailability(
   const availableTimes: string[] = [];
 
   rows.each((i, row) => {
-    const bookingLink = $('a.inlineBooking', row);
+    // const bookingLink = $('a.inlineBooking', row);
+    const peopleBooked = $('td.tbooked', row);
+    const blocked = $('td.tblocked', row).length !== 0;
     const time = $('th', row).text();
-    if (bookingLink.length !== 0) {
+    if (peopleBooked.length === 0 && !blocked) {
       availableTimes.push(time);
     }
   });
