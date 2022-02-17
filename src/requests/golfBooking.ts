@@ -69,7 +69,6 @@ export async function getBookings(
     })
   );
 
-  console.log(JSON.stringify(parsedBookings, null, 2));
   return parsedBookings;
 }
 
@@ -126,8 +125,6 @@ export async function getCourseAvailability(
   const month = args.date.getMonth() + 1;
   const year = args.date.getFullYear();
   const date = `${day}-${month}-${year}`;
-  console.log(date);
-  console.log(args.course.valueOf());
   const options: RequestPromiseOptions = {
     method: 'GET',
     baseUrl: 'https://cainhoewood.intelligentgolf.co.uk/',
@@ -137,7 +134,6 @@ export async function getCourseAvailability(
     }
   };
   const html = await request('/memberbooking/', options);
-  console.log(html);
   const rows = $('tr.cantreserve', html);
 
   const availableTimes: string[] = [];
