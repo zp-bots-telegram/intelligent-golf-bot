@@ -1,6 +1,7 @@
 ## Project Gitignore
 build/
 logins.json
+monitors.json
 
 
 ## Node Gitignore
