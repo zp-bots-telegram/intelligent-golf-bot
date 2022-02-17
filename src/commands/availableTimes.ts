@@ -8,7 +8,7 @@ import { getLogin } from '../storage/logins';
 
 export function availableTimesCommand(telegramBot: TelegramBot) {
   telegramBot.onText(
-    /\/availabletimes (Manor|Castle) .*/i,
+    /\/availabletimes (manor|castle) .*/i,
     async (msg: Message, match) => {
       const chatId = msg.chat.id;
 
@@ -27,7 +27,8 @@ export function availableTimesCommand(telegramBot: TelegramBot) {
         return;
       }
 
-      const courseString = match[1];
+      let courseString = match[1];
+      courseString = courseString[0].toUpperCase() + courseString.substring(1);
       const course = Course[courseString as keyof typeof Course];
       const dateString = match.splice(0, 2).join(' ');
       const date = parseDate(dateString);
