@@ -36,6 +36,10 @@ export function monitorAvailableTimesCommand(telegramBot: TelegramBot) {
         date[1]?.start.date() ??
         new Date(new Date(start).setUTCHours(23, 59, 59));
 
+      if (!date[0].end?.date() && !date[1]?.start.date()) {
+        start.setUTCHours(0, 0, 0);
+      }
+
       if (
         start.getUTCDate() !== end.getUTCDate() ||
         start.getUTCMonth() !== end.getUTCMonth()
@@ -57,7 +61,7 @@ export function monitorAvailableTimesCommand(telegramBot: TelegramBot) {
 
       await addMonitor(msg.from.id, course, start, end);
 
-      let message = '<b>Monitor Set</b>\n';
+      let message = '<b>Monitor Added</b>\n';
       message += `<b>Course:</b> ${courseString}\n`;
       message += `<b>Start Date:</b> ${start.toISOString()}`;
       message += `<b>End Date:</b> ${end.toISOString()}`;

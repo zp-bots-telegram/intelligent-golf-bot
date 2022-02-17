@@ -12,7 +12,7 @@ export interface Monitor {
 }
 
 export interface Monitors {
-  [key: number]: Monitor;
+  [key: number]: Monitor[];
 }
 
 const dateTimeReviver = (key: string, value: string) => {
@@ -42,7 +42,7 @@ async function load(): Promise<Monitors> {
   }
 }
 
-export async function getMonitors(): Promise<Monitors> {
+export async function getAllMonitors(): Promise<Monitors> {
   if (!monitorCache) {
     const monitors = await load();
     if (!monitorCache) monitorCache = monitors;
@@ -50,8 +50,8 @@ export async function getMonitors(): Promise<Monitors> {
   return monitorCache;
 }
 
-export async function getMonitor(userId: number): Promise<Monitor> {
-  const monitors = await getMonitors();
+export async function getUsersMonitors(userId: number): Promise<Monitor[]> {
+  const monitors = await getAllMonitors();
   return monitors[userId];
 }
 
@@ -61,8 +61,10 @@ export async function addMonitor(
   startDate: Date,
   endDate: Date
 ): Promise<Monitor> {
-  const monitors: Monitors = await getMonitors();
-  monitors[userId] = { course, startDate, endDate };
+  const monitors: Monitors = await getAllMonitors();
+  const userMonitors = monitors[userId] ?? [];
+  userMonitors.push({ course, startDate, endDate });
+  monitors[userId] = userMonitors;
   await save(monitors);
   return { course, startDate, endDate };
 }
