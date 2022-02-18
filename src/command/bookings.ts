@@ -1,12 +1,12 @@
-import TelegramBot, { Message } from 'node-telegram-bot-api';
 import rp from 'request-promise';
 
-import { getBookings, login } from '../requests/golfBooking';
-import { getLogin } from '../storage/logins';
+import { getBookings, login } from 'requests/golfBooking';
+import { getLogin } from 'storage/logins';
+import { Telegraf } from 'telegraf';
 
-export function bookingsCommand(telegramBot: TelegramBot) {
-  telegramBot.onText(/\/bookings/i, async (msg: Message) => {
-    const chatId = msg.chat.id;
+export function bookingsCommand(bot: Telegraf): void {
+  bot.command('bookings', async (ctx) => {
+    const msg = ctx.message;
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
@@ -17,9 +17,7 @@ export function bookingsCommand(telegramBot: TelegramBot) {
     const credentials = await getLogin(msg.from.id);
 
     if (!credentials) {
-      await telegramBot.sendMessage(chatId, 'You are not authenticated', {
-        parse_mode: 'HTML'
-      });
+      await ctx.reply('You are not authenticated');
       return;
     }
 
@@ -41,6 +39,6 @@ export function bookingsCommand(telegramBot: TelegramBot) {
       }\n<b>Participants:</b> ${details.participants.join(', ')}`;
     });
 
-    await telegramBot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+    await ctx.replyWithHTML(message);
   });
 }

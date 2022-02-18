@@ -1,31 +1,38 @@
-import dotenv from 'dotenv';
+import express, { Request, Response } from 'express';
 
-import TelegramBot from 'node-telegram-bot-api';
+import { Telegraf } from 'telegraf';
+import { getEnv } from 'shared/env';
+import { devSetup } from 'devSetup';
+import { registerCommands } from 'command/commands';
+import { scheduledAvailableTimesMonitor } from 'scheduled/availableTimesMonitor';
 
-import { bookingsCommand } from './commands';
-import { loginCommand } from './commands/login';
-import { availableTimesCommand } from './commands/availableTimes';
-import { monitorAvailableTimesCommand } from './commands/monitorAvailableTimes';
-import { scheduledAvailableTimesMonitor } from './scheduled/availableTimesMonitor';
-
-// eslint-disable-next-line require-await
-export async function handler() {
-  dotenv.config();
-  if (!process.env.BOT_TOKEN) {
-    throw new Error('BOT_TOKEN was undefined');
+export async function handler(): Promise<void> {
+  const token = process.env.BOT_TOKEN;
+  if (token === undefined) {
+    throw new Error('BOT_TOKEN must be provided!');
   }
 
-  const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+  if (getEnv('NODE_ENV') === 'development') {
+    await devSetup();
+  }
+
+  const bot = new Telegraf(token);
 
   registerCommands(bot);
-  scheduledAvailableTimesMonitor(bot);
-}
 
-function registerCommands(bot: TelegramBot) {
-  bookingsCommand(bot);
-  loginCommand(bot);
-  availableTimesCommand(bot);
-  monitorAvailableTimesCommand(bot);
+  scheduledAvailableTimesMonitor(bot);
+
+  const host = getEnv('host');
+  const secretPath = `/telegraf/${bot.secretPathComponent()}`;
+
+  await bot.telegram.setWebhook(`${host}${secretPath}`);
+
+  const app = express();
+  app.get('/', (req: Request, res: Response) => res.send('Hello World!'));
+  app.use(bot.webhookCallback(secretPath));
+  app.listen(3000, () => {
+    console.log('Example app listening on port 3000!');
+  });
 }
 
 handler()

@@ -1,3 +1,13 @@
 {
-  "ignore": ["logins.json", "monitors.json"]
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/", "dist/", "coverage/", "__test__", "logins.json", "monitors.json"],
+  "watch": ["src/"],
+  "execMap": {
+    "ts": "node -r ts-node/register"
+  },
+  "env": {
+    "NODE_ENV": "development",
+    "NODE_PATH": "./src"
+  },
+  "ext": "js,json,ts"
 }

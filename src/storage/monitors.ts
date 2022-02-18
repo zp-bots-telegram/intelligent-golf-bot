@@ -1,6 +1,6 @@
 import { promises, constants } from 'fs';
 
-import { Course } from '../requests/golfBooking';
+import { Course } from 'requests/golfBooking';
 
 const fs = promises;
 const fsConstants = constants;
@@ -22,7 +22,7 @@ const dateTimeReviver = (key: string, value: string) => {
   return value;
 };
 
-async function save(monitors: Monitors): Promise<Boolean> {
+async function save(monitors: Monitors): Promise<boolean> {
   await fs.writeFile('monitors.json', JSON.stringify(monitors));
   console.log('Monitors file has been saved.');
   return true;

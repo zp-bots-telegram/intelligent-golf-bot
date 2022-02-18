@@ -1,15 +1,15 @@
 import { AsyncTask, SimpleIntervalJob, ToadScheduler } from 'toad-scheduler';
 
-import TelegramBot from 'node-telegram-bot-api';
 import rp from 'request-promise';
 
-import { getAllMonitors } from '../storage/monitors';
-import { getCourseAvailability, login } from '../requests/golfBooking';
-import { getLogin } from '../storage/logins';
+import { getAllMonitors } from 'storage/monitors';
+import { getCourseAvailability, login } from 'requests/golfBooking';
+import { getLogin } from 'storage/logins';
+import { Telegraf } from 'telegraf';
 
 const cache: { [key: string]: string[] } = {};
 
-export function scheduledAvailableTimesMonitor(bot: TelegramBot) {
+export function scheduledAvailableTimesMonitor(bot: Telegraf): void {
   const scheduler = new ToadScheduler();
   const task = new AsyncTask('availableTimesMonitor', async () => {
     const monitors = await getAllMonitors();
@@ -83,7 +83,9 @@ export function scheduledAvailableTimesMonitor(bot: TelegramBot) {
                 message += `\n<b>New Available Time:</b> ${availabilityTime}`;
               });
 
-              await bot.sendMessage(userId, message, { parse_mode: 'HTML' });
+              await bot.telegram.sendMessage(userId, message, {
+                parse_mode: 'HTML'
+              });
             }
 
             // eslint-disable-next-line require-atomic-updates

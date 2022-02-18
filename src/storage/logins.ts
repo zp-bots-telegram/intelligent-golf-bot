@@ -12,7 +12,7 @@ interface Logins {
   [key: number]: Login;
 }
 
-async function save(logins: Logins): Promise<Boolean> {
+async function save(logins: Logins): Promise<boolean> {
   await fs.writeFile('logins.json', JSON.stringify(logins));
   console.log('JSON file has been saved.');
   return true;

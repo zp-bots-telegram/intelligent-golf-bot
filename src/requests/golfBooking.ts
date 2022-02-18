@@ -9,7 +9,7 @@ export async function login(
     username: string;
     password: string;
   }
-): Promise<Boolean> {
+): Promise<boolean> {
   const options: RequestPromiseOptions = {
     method: 'POST',
     baseUrl: 'https://cainhoewood.intelligentgolf.co.uk/',
@@ -141,7 +141,6 @@ export async function getCourseAvailability(
   rows.each((i, row) => {
     // const bookingLink = $('a.inlineBooking', row);
     const peopleBooked = $('td.tbooked', row);
-    // eslint-disable-next-line shopify/binary-assignment-parens
     const blocked = $('td.tblocked', row).length !== 0;
     const time = $('th', row).text();
     if (peopleBooked.length === 0 && !blocked) {
