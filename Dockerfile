@@ -8,6 +8,7 @@ RUN yarn run build
 RUN yarn install --production=true --prefer-offline --frozen-lockfile --ignore-scripts
 
 FROM node:16.7.0-alpine
+ENV NODE_ENV=production
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY --from=0 /usr/src/app/node_modules ./node_modules
