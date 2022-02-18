@@ -1,5 +1,12 @@
 Change log
 
+# [1.5.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.4.0...v1.5.0) (2022-02-18)
+
+
+### Features
+
+* move from node-telegram-bot-api to telegraf and typescript template defaults ([4d94880](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/4d94880f4269a4562a9d1c9ab7754c34dd9504ad))
+
 # [1.4.0](https://github.com/zp-bots-telegram/elite-live-golf-bot/compare/v1.3.0...v1.4.0) (2022-02-17)
 
 
