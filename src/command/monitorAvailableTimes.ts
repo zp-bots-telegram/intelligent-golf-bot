@@ -9,16 +9,16 @@ export function monitorAvailableTimesCommand(bot: Telegraf): void {
   bot.command('monitor', async (ctx) => {
     const msg = ctx.message;
     const command = ctx.message.text;
-    const match = /\/monitor (manor|castle) .*/i.exec(command);
+    const match = /\/monitor (manor|castle) (.*)/i.exec(command);
 
     if (!msg.from) {
       return;
     }
 
-    if (match?.length !== 2) {
+    if (match?.length !== 3) {
       console.log(match?.length);
       await ctx.reply(
-        'Usage is /monitorravailabletimes (Manor/Castle) (date) from (startTime) - (endTime)'
+        'Usage is /monitor (Manor/Castle) (date) from (startTime) - (endTime)'
       );
       return;
     }
@@ -26,7 +26,7 @@ export function monitorAvailableTimesCommand(bot: Telegraf): void {
     let courseString = match[1];
     courseString = courseString[0].toUpperCase() + courseString.substring(1);
     const course = Course[courseString as keyof typeof Course];
-    const dateString = match.splice(0, 2).join(' ');
+    const dateString = match[2];
     const date = parseDate(dateString);
 
     const start = date[0].start.date();
@@ -57,7 +57,7 @@ export function monitorAvailableTimesCommand(bot: Telegraf): void {
 
     let message = '<b>Monitor Added</b>\n';
     message += `<b>Course:</b> ${courseString}\n`;
-    message += `<b>Start Date:</b> ${start.toISOString()}`;
+    message += `<b>Start Date:</b> ${start.toISOString()}\n`;
     message += `<b>End Date:</b> ${end.toISOString()}`;
 
     await ctx.replyWithHTML(message);
