@@ -14,5 +14,5 @@ COPY --from=0 /usr/src/app/node_modules ./node_modules
 COPY --from=0 /usr/src/app/yarn.lock ./
 COPY --from=0 /usr/src/app/package.json ./
 RUN yarn install --production=true --prefer-offline --frozen-lockfile --ignore-scripts
-COPY --from=0 /usr/src/app/build ./build
+COPY --from=0 /usr/src/app/dist ./dist
 CMD yarn run start
