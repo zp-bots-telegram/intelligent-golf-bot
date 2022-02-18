@@ -1,5 +1,12 @@
 Change log
 
+## [1.5.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.5.0...v1.5.1) (2022-02-18)
+
+
+### Bug Fixes
+
+* argument matching on monitor available times command ([fe68cec](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/fe68cec6f4a7a7c4142db7a98c2031a92fb81e5a))
+
 # [1.5.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.4.0...v1.5.0) (2022-02-18)
 
 
