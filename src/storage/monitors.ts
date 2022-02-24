@@ -1,4 +1,5 @@
 import { promises, constants } from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Course } from 'requests/golfBooking';
 
@@ -6,6 +7,7 @@ const fs = promises;
 const fsConstants = constants;
 
 export interface Monitor {
+  id: string;
   course: Course;
   startDate: Date;
   endDate: Date;
@@ -61,10 +63,26 @@ export async function addMonitor(
   startDate: Date,
   endDate: Date
 ): Promise<Monitor> {
+  const id = uuidv4();
   const monitors: Monitors = await getAllMonitors();
   const userMonitors = monitors[userId] ?? [];
-  userMonitors.push({ course, startDate, endDate });
+  userMonitors.push({ id, course, startDate, endDate });
   monitors[userId] = userMonitors;
   await save(monitors);
-  return { course, startDate, endDate };
+  return { id, course, startDate, endDate };
+}
+
+export async function deleteMonitor(
+  id: string,
+  userId: number
+): Promise<boolean> {
+  const monitors: Monitors = await getAllMonitors();
+  const userMonitors = monitors[userId] ?? [];
+  const newMonitors = userMonitors.filter((monitor) => {
+    return monitor.id !== id;
+  });
+  if (userMonitors.length === newMonitors.length) return false;
+  monitors[userId] = newMonitors;
+  await save(monitors);
+  return true;
 }
