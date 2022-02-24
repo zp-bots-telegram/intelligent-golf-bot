@@ -1,5 +1,12 @@
 Change log
 
+# [1.6.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.5.1...v1.6.0) (2022-02-24)
+
+
+### Features
+
+* add monitors command to list and delete monitors ([779e5cc](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/779e5cc6af6ac07f6146a791de84dd56d270d701))
+
 ## [1.5.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.5.0...v1.5.1) (2022-02-18)
 
 
