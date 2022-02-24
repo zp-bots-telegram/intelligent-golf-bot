@@ -11,10 +11,6 @@ export function monitorAvailableTimesCommand(bot: Telegraf): void {
     const command = ctx.message.text;
     const match = /\/monitor (manor|castle) (.*)/i.exec(command);
 
-    if (!msg.from) {
-      return;
-    }
-
     if (match?.length !== 3) {
       console.log(match?.length);
       await ctx.reply(

@@ -10,10 +10,6 @@ export function bookingsCommand(bot: Telegraf): void {
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
-    if (!msg.from) {
-      return;
-    }
-
     const credentials = await getLogin(msg.from.id);
 
     if (!credentials) {

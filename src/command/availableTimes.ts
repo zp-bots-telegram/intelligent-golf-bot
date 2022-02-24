@@ -14,11 +14,6 @@ export function availableTimesCommand(bot: Telegraf): void {
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
-    if (!msg.from) {
-      return;
-    }
-    console.log(JSON.stringify(match));
-
     if (match?.length !== 3) {
       console.log(match?.length);
       await ctx.reply('Usage is /availableTimes (Manor/Castle) (date)');

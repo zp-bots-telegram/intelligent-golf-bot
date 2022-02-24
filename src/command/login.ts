@@ -10,9 +10,6 @@ export function loginCommand(bot: Telegraf): void {
     const command = ctx.message.text;
     const match = /\/login (\S+) ([0-9A-Za-z]+)/i.exec(command);
 
-    if (!msg.from) {
-      return;
-    }
     const userId = msg.from.id;
     if (match?.length !== 3) {
       console.log(match?.length);
