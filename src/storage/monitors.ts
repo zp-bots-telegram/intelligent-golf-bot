@@ -1,5 +1,5 @@
 import { promises, constants } from 'fs';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 import { Course } from 'requests/golfBooking';
 
@@ -36,7 +36,7 @@ async function load(): Promise<Monitors> {
   try {
     await fs.access('monitors.json', fsConstants.W_OK);
     const file = await fs.readFile('monitors.json');
-    console.log('JSON file has been loaded.');
+    console.log('Monitors file has been loaded.');
     return JSON.parse(file.toString(), dateTimeReviver);
   } catch (error) {
     console.error('Loading monitors file threw error', error);
@@ -63,7 +63,7 @@ export async function addMonitor(
   startDate: Date,
   endDate: Date
 ): Promise<Monitor> {
-  const id = uuidv4();
+  const id = uuid();
   const monitors: Monitors = await getAllMonitors();
   const userMonitors = monitors[userId] ?? [];
   userMonitors.push({ id, course, startDate, endDate });

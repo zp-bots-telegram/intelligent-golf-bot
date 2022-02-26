@@ -5,11 +5,11 @@ import rp from 'request-promise';
 import { getAllMonitors } from 'storage/monitors';
 import { getCourseAvailability, login } from 'requests/golfBooking';
 import { getLogin } from 'storage/logins';
-import { Telegraf } from 'telegraf';
+import { Bot } from 'grammy';
 
 const cache: { [key: string]: string[] } = {};
 
-export function scheduledAvailableTimesMonitor(bot: Telegraf): void {
+export function scheduledAvailableTimesMonitor(bot: Bot): void {
   const scheduler = new ToadScheduler();
   const task = new AsyncTask('availableTimesMonitor', async () => {
     const monitors = await getAllMonitors();
@@ -83,7 +83,7 @@ export function scheduledAvailableTimesMonitor(bot: Telegraf): void {
                 message += `\n<b>New Available Time:</b> ${availabilityTime}`;
               });
 
-              await bot.telegram.sendMessage(userId, message, {
+              await bot.api.sendMessage(userId, message, {
                 parse_mode: 'HTML'
               });
             }

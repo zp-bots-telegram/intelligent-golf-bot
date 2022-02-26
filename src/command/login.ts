@@ -1,18 +1,16 @@
 import rp from 'request-promise';
-import { Telegraf } from 'telegraf';
-
 import { login } from 'requests/golfBooking';
 import { addLogin } from 'storage/logins';
+import { Bot } from 'grammy';
 
-export function loginCommand(bot: Telegraf): void {
-  bot.command('login', async (ctx) => {
-    const msg = ctx.message;
-    const command = ctx.message.text;
+export function loginCommand(bot: Bot): void {
+  bot.on('message').command('login', async (ctx) => {
+    const msg = ctx.msg;
+    const command = msg.text;
     const match = /\/login (\S+) ([0-9A-Za-z]+)/i.exec(command);
 
     const userId = msg.from.id;
     if (match?.length !== 3) {
-      console.log(match?.length);
       await ctx.reply('Usage is /login {username} {password}');
       return;
     }
@@ -37,6 +35,6 @@ export function loginCommand(bot: Telegraf): void {
       await addLogin(userId, username, password);
     }
 
-    await ctx.replyWithHTML(message);
+    await ctx.reply(message, { parse_mode: 'HTML' });
   });
 }

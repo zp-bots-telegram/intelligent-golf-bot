@@ -4,18 +4,17 @@ import rp from 'request-promise';
 
 import { Course, getCourseAvailability, login } from 'requests/golfBooking';
 import { getLogin } from 'storage/logins';
-import { Telegraf } from 'telegraf';
+import { Bot } from 'grammy';
 
-export function availableTimesCommand(bot: Telegraf): void {
-  bot.command('availabletimes', async (ctx) => {
-    const msg = ctx.message;
-    const command = ctx.message.text;
+export function availableTimesCommand(bot: Bot): void {
+  bot.on('message').command('availabletimes', async (ctx) => {
+    const msg = ctx.msg;
+    const command = msg.text;
     const match = /\/availabletimes (manor|castle) (.*)/i.exec(command);
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
     if (match?.length !== 3) {
-      console.log(match?.length);
       await ctx.reply('Usage is /availableTimes (Manor/Castle) (date)');
       return;
     }
@@ -52,6 +51,6 @@ export function availableTimesCommand(bot: Telegraf): void {
       message += `\n<b>Time:</b> ${time}`;
     });
 
-    await ctx.replyWithHTML(message);
+    await ctx.reply(message, { parse_mode: 'HTML' });
   });
 }

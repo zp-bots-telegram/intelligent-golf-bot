@@ -2,11 +2,11 @@ import rp from 'request-promise';
 
 import { getBookings, login } from 'requests/golfBooking';
 import { getLogin } from 'storage/logins';
-import { Telegraf } from 'telegraf';
+import { Bot } from 'grammy';
 
-export function bookingsCommand(bot: Telegraf): void {
-  bot.command('bookings', async (ctx) => {
-    const msg = ctx.message;
+export function bookingsCommand(bot: Bot): void {
+  bot.on('message').command('bookings', async (ctx) => {
+    const msg = ctx.msg;
 
     const request = rp.defaults({ jar: true, followAllRedirects: true });
 
@@ -35,6 +35,6 @@ export function bookingsCommand(bot: Telegraf): void {
       }\n<b>Participants:</b> ${details.participants.join(', ')}`;
     });
 
-    await ctx.replyWithHTML(message);
+    await ctx.reply(message, { parse_mode: 'HTML' });
   });
 }

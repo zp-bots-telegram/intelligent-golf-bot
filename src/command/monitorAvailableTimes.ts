@@ -3,16 +3,15 @@ import { parse as parseDate } from 'chrono-node';
 import { Course } from 'requests/golfBooking';
 import { getLogin } from 'storage/logins';
 import { addMonitor } from 'storage/monitors';
-import { Telegraf } from 'telegraf';
+import { Bot } from 'grammy';
 
-export function monitorAvailableTimesCommand(bot: Telegraf): void {
-  bot.command('monitor', async (ctx) => {
-    const msg = ctx.message;
-    const command = ctx.message.text;
+export function monitorAvailableTimesCommand(bot: Bot): void {
+  bot.on('message').command('monitor', async (ctx) => {
+    const msg = ctx.msg;
+    const command = msg.text;
     const match = /\/monitor (manor|castle) (.*)/i.exec(command);
 
     if (match?.length !== 3) {
-      console.log(match?.length);
       await ctx.reply(
         'Usage is /monitor (Manor/Castle) (date) from (startTime) - (endTime)'
       );
@@ -56,6 +55,6 @@ export function monitorAvailableTimesCommand(bot: Telegraf): void {
     message += `<b>Start Date:</b> ${start.toISOString()}\n`;
     message += `<b>End Date:</b> ${end.toISOString()}`;
 
-    await ctx.replyWithHTML(message);
+    await ctx.reply(message, { parse_mode: 'HTML' });
   });
 }

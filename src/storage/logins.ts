@@ -14,7 +14,7 @@ interface Logins {
 
 async function save(logins: Logins): Promise<boolean> {
   await fs.writeFile('logins.json', JSON.stringify(logins));
-  console.log('JSON file has been saved.');
+  console.log('Logins file has been saved.');
   return true;
 }
 
@@ -24,7 +24,7 @@ async function load(): Promise<Logins> {
   try {
     await fs.access('logins.json', fsConstants.W_OK);
     const file = await fs.readFile('logins.json');
-    console.log('JSON file has been loaded.');
+    console.log('Logins file has been loaded.');
     return JSON.parse(file.toString()) as Logins;
   } catch (error) {
     console.error('Loading file threw error', error);

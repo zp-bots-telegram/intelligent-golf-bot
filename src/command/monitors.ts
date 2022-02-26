@@ -1,26 +1,22 @@
 import { deleteMonitor, getUsersMonitors } from 'storage/monitors';
-import { Telegraf } from 'telegraf';
-import { CallbackQuery } from 'telegraf/typings/core/types/typegram';
+import { Bot } from 'grammy';
 
-type DataCallbackQuery = CallbackQuery & {
-  data: string;
-};
-
-export function monitorsCommand(bot: Telegraf): void {
+export function monitorsCommand(bot: Bot): void {
   bot.on('callback_query', async (ctx) => {
-    const query = ctx.callbackQuery as DataCallbackQuery;
+    const query = ctx.callbackQuery;
     if (query.data) {
       const id = query.data;
       if (!(await deleteMonitor(id, query.from.id))) {
-        await ctx.answerCbQuery('Monitor Delete Failed');
+        await ctx.answerCallbackQuery('Monitor Delete Failed');
         return;
       }
-      await ctx.deleteMessage(ctx.callbackQuery.message?.message_id);
-      await ctx.answerCbQuery('Monitor Deleted');
+      await ctx.deleteMessage();
+      await ctx.answerCallbackQuery('Monitor Deleted');
     }
   });
-  bot.command('monitors', async (ctx) => {
-    const userId = ctx.from.id;
+
+  bot.on('message').command('monitors', async (ctx) => {
+    const userId = ctx.msg.from?.id;
 
     const monitors = await getUsersMonitors(userId);
 
@@ -29,7 +25,7 @@ export function monitorsCommand(bot: Telegraf): void {
       return;
     }
 
-    await ctx.replyWithHTML('<b>Monitors</b>');
+    await ctx.reply('<b>Monitors</b>', { parse_mode: 'HTML' });
 
     await Promise.all(
       monitors.map(async (monitor) => {
@@ -37,7 +33,7 @@ export function monitorsCommand(bot: Telegraf): void {
         let message = `<b>Course:</b> ${course}\n`;
         message += `<b>Start Date:</b> ${startDate.toISOString()}\n`;
         message += `<b>End Date:</b> ${endDate.toISOString()}`;
-        await ctx.replyWithHTML(message, {
+        await ctx.reply(message, {
           parse_mode: 'HTML',
           reply_markup: {
             inline_keyboard: [[{ callback_data: monitor.id, text: 'Delete' }]]
