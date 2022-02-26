@@ -1,5 +1,12 @@
 Change log
 
+# [1.7.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.6.0...v1.7.0) (2022-02-26)
+
+
+### Features
+
+* switch from telegraf to grammy for bot api ([1dd3793](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/1dd379364c054eea0722d89cec8ebd7a96066b5e))
+
 # [1.6.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.5.1...v1.6.0) (2022-02-24)
 
 
