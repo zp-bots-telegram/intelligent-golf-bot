@@ -24,6 +24,10 @@ export function availableTimesCommand(bot: Bot): void {
     const course = Course[courseString as keyof typeof Course];
     const dateString = match[2];
     const date = parseDate(dateString);
+    if (!date) {
+      await ctx.reply('Could not understand date input!');
+      return;
+    }
 
     const credentials = await getLogin(msg.from.id);
 
