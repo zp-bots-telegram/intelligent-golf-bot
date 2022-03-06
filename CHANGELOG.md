@@ -1,5 +1,12 @@
 Change log
 
+## [1.7.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.7.0...v1.7.1) (2022-03-06)
+
+
+### Bug Fixes
+
+* return error if date input couldn't be understood ([f1b5e2a](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/f1b5e2a73fb916207fec62b797334d1751020dff))
+
 # [1.7.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.6.0...v1.7.0) (2022-02-26)
 
 
