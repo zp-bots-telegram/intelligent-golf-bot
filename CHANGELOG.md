@@ -1,5 +1,12 @@
 Change log
 
+# [1.8.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.7.1...v1.8.0) (2023-02-20)
+
+
+### Features
+
+* return booking form information with available times ([14d9b4c](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/14d9b4c463e7a814f31b7991e43c65228269271d))
+
 ## [1.7.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.7.0...v1.7.1) (2022-03-06)
 
 
