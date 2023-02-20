@@ -2,7 +2,7 @@ import { AsyncTask, SimpleIntervalJob, ToadScheduler } from 'toad-scheduler';
 
 import rp from 'request-promise';
 
-import { getAllMonitors } from 'storage/monitors';
+import { deleteMonitor, getAllMonitors } from 'storage/monitors';
 import { getCourseAvailability, login } from 'requests/golfBooking';
 import { getLogin } from 'storage/logins';
 import { Bot } from 'grammy';
@@ -26,76 +26,78 @@ export function scheduledAvailableTimesMonitor(bot: Bot): void {
           username: credentials.username,
           password: credentials.password
         });
-        for (const monitorKey in userMonitors) {
-          if (Object.hasOwnProperty.call(monitors, userKey)) {
-            const { course, startDate, endDate } = userMonitors[monitorKey];
-            const cacheKey = `${course}${startDate.toISOString()}${endDate.toISOString()}`;
-
-            let availability = await getCourseAvailability(request, {
-              course,
-              date: startDate
-            });
-            const startTime = `${startDate
-              .getUTCHours()
-              .toString()
-              .padStart(2, '0')}:${startDate
-              .getUTCMinutes()
-              .toString()
-              .padStart(2, '0')}`;
-            const endTime = `${endDate
-              .getUTCHours()
-              .toString()
-              .padStart(2, '0')}:${endDate
-              .getUTCMinutes()
-              .toString()
-              .padStart(2, '0')}`;
-            availability = availability.filter((el) => {
-              return el > startTime && el < endTime;
-            });
-
-            if (!cache[cacheKey]) {
-              cache[cacheKey] = availability;
-              continue;
-            }
-
-            const cacheAvailability = cache[cacheKey];
-
-            const newTimes: string[] = [];
-
-            for (const timeKey in availability) {
-              if (Object.hasOwnProperty.call(availability, timeKey)) {
-                const time = availability[timeKey];
-                if (cacheAvailability.includes(time)) continue;
-                newTimes.push(time);
-              }
-            }
-
-            if (newTimes.length > 0) {
-              let message = '<b>New Available Times</b>\n';
-              message += `<b>Course:</b> ${course}\n`;
-              message += `<b>Search Date:</b> ${startDate.getDate()}/${
-                startDate.getMonth() + 1
-              }/${startDate.getFullYear()}\n`;
-              message += `<b>Search Start Time</b> ${startTime}\n`;
-              message += `<b>Search End Time</b> ${endTime}\n`;
-
-              newTimes.forEach((availabilityTime) => {
-                message += `\n<b>New Available Time:</b> ${availabilityTime}`;
-              });
-
-              await bot.api.sendMessage(userId, message, {
-                parse_mode: 'HTML'
-              });
-            }
-
-            // eslint-disable-next-line require-atomic-updates
-            cache[cacheKey] = availability;
+        for (const monitor of userMonitors) {
+          const { course, startDate, endDate } = monitor;
+          const cacheKey = `${userId}${course}${startDate.toISOString()}${endDate.toISOString()}`;
+          if (new Date() > endDate) {
+            await deleteMonitor(monitor.id, userId);
+            delete cache[cacheKey];
           }
+
+          let availability = await getCourseAvailability(request, {
+            course,
+            date: startDate
+          });
+          const startTime = `${startDate
+            .getUTCHours()
+            .toString()
+            .padStart(2, '0')}:${startDate
+            .getUTCMinutes()
+            .toString()
+            .padStart(2, '0')}`;
+          const endTime = `${endDate
+            .getUTCHours()
+            .toString()
+            .padStart(2, '0')}:${endDate
+            .getUTCMinutes()
+            .toString()
+            .padStart(2, '0')}`;
+          availability = availability.filter((el) => {
+            return el.time > startTime && el.time < endTime;
+          });
+
+          if (!cache[cacheKey]) {
+            cache[cacheKey] = availability.map((timeSlot) => timeSlot.time);
+            continue;
+          }
+
+          const cacheAvailability = cache[cacheKey];
+
+          const newTimes: string[] = [];
+
+          for (const timeSlot of availability) {
+            if (cacheAvailability.includes(timeSlot.time)) continue;
+            newTimes.push(timeSlot.time);
+          }
+
+          if (newTimes.length > 0) {
+            let message = '<b>New Available Times</b>\n';
+            message += `<b>Course:</b> ${course}\n`;
+            message += `<b>Search Date:</b> ${startDate.getDate()}/${
+              startDate.getMonth() + 1
+            }/${startDate.getFullYear()}\n`;
+            message += `<b>Search Start Time</b> ${startTime}\n`;
+            message += `<b>Search End Time</b> ${endTime}\n`;
+
+            newTimes.forEach((availabilityTime) => {
+              message += `\n<b>New Available Time:</b> ${availabilityTime}`;
+            });
+
+            await bot.api.sendMessage(userId, message, {
+              parse_mode: 'HTML'
+            });
+          }
+
+          // eslint-disable-next-line require-atomic-updates
+          cache[cacheKey] = availability.map((timeSlot) => timeSlot.time);
         }
       }
     }
   });
 
-  const job = new SimpleIntervalJob({ minutes: 1, runImmediately: true }, task);
+  const job = new SimpleIntervalJob(
+    { seconds: 10, runImmediately: true },
+    task
+  );
   scheduler.addSimpleIntervalJob(job);
 }

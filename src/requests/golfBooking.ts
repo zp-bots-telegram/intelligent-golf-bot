@@ -41,6 +41,11 @@ interface Booking {
   moreDetails: BookingDetails;
 }
 
+interface TimeSlot {
+  time: string;
+  bookingForm: { name: string; value: string }[];
+}
+
 export async function getBookings(
   request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>
 ): Promise<Booking[]> {
@@ -120,7 +125,7 @@ export async function getCourseAvailability(
     date: Date;
     course: Course;
   }
-): Promise<string[]> {
+): Promise<TimeSlot[]> {
   const day = args.date.getDate();
   const month = args.date.getMonth() + 1;
   const year = args.date.getFullYear();
@@ -136,15 +141,22 @@ export async function getCourseAvailability(
   const html = await request('/memberbooking/', options);
   const rows = $('tr.cantreserve', html);
 
-  const availableTimes: string[] = [];
+  const availableTimes: TimeSlot[] = [];
 
   rows.each((i, row) => {
     // const bookingLink = $('a.inlineBooking', row);
     const peopleBooked = $('td.tbooked', row);
     const blocked = $('td.tblocked', row).length !== 0;
     const time = $('th', row).text();
+    const form = $('td form > input', row);
+    const bookingForm = form.toArray().map((field) => {
+      return {
+        name: field.attribs.name,
+        value: field.attribs.value
+      };
+    });
     if (peopleBooked.length === 0 && !blocked) {
-      availableTimes.push(time);
+      availableTimes.push({ time, bookingForm });
     }
   });
 

@@ -51,8 +51,8 @@ export function availableTimesCommand(bot: Bot): void {
       date.getMonth() + 1
     }/${date.getFullYear()}`;
 
-    availableTimes.forEach((time) => {
-      message += `\n<b>Time:</b> ${time}`;
+    availableTimes.forEach((timeSlot) => {
+      message += `\n<b>Time:</b> ${timeSlot.time}`;
     });
 
     await ctx.reply(message, { parse_mode: 'HTML' });
