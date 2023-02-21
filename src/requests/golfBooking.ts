@@ -187,7 +187,6 @@ export async function bookTimeSlot(
 
   if (confirmation) {
     const details = parseBookingDetailsPage(html);
-    console.log(details);
     return details;
   }
   return null;
