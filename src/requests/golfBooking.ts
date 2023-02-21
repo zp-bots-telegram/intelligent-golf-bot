@@ -43,7 +43,7 @@ interface Booking {
 
 interface TimeSlot {
   time: string;
-  bookingForm: { name: string; value: string }[];
+  bookingForm: { [x: string]: string };
 }
 
 export async function getBookings(
@@ -77,15 +77,7 @@ export async function getBookings(
   return parsedBookings;
 }
 
-export async function getBookingDetails(
-  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
-  args: {
-    bookingId: string;
-  }
-): Promise<BookingDetails> {
-  const html = await request(
-    `https://cainhoewood.intelligentgolf.co.uk/member_teetime.php?edit=${args.bookingId}`
-  );
+function parseBookingDetailsPage(html: string) {
   const bookingDetails = $('div#teebooking_info tr', html);
   const participantDetails = $('div#teebooking_players tr', html);
 
@@ -109,6 +101,18 @@ export async function getBookingDetails(
     price,
     holes
   };
+}
+
+export async function getBookingDetails(
+  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
+  args: {
+    bookingId: string;
+  }
+): Promise<BookingDetails> {
+  const html: string = await request(
+    `https://cainhoewood.intelligentgolf.co.uk/member_teetime.php?edit=${args.bookingId}`
+  );
+  return parseBookingDetailsPage(html);
 }
 
 // eslint-disable-next-line no-shadow
@@ -149,11 +153,9 @@ export async function getCourseAvailability(
     const blocked = $('td.tblocked', row).length !== 0;
     const time = $('th', row).text();
     const form = $('td form > input', row);
-    const bookingForm = form.toArray().map((field) => {
-      return {
-        name: field.attribs.name,
-        value: field.attribs.value
-      };
+    const bookingForm: { [x: string]: string } = {};
+    form.toArray().forEach((field) => {
+      bookingForm[field.attribs.name] = field.attribs.value;
     });
     if (peopleBooked.length === 0 && !blocked) {
       availableTimes.push({ time, bookingForm });
@@ -161,4 +163,32 @@ export async function getCourseAvailability(
   });
 
   return availableTimes;
+}
+
+export async function bookTimeSlot(
+  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
+  args: {
+    timeSlot: TimeSlot;
+  }
+): Promise<BookingDetails | null> {
+  const options: RequestPromiseOptions = {
+    method: 'GET',
+    baseUrl: 'https://cainhoewood.intelligentgolf.co.uk/',
+    qs: {
+      numslots: 1,
+      ...args.timeSlot.bookingForm
+    }
+  };
+  const html = await request('/memberbooking/', options);
+  const confirmation = $(
+    '#globalwrap > div.user-messages.alert.user-message-success.alert-success > ul > li > strong',
+    html
+  );
+
+  if (confirmation) {
+    const details = parseBookingDetailsPage(html);
+    console.log(details);
+    return details;
+  }
+  return null;
 }

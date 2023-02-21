@@ -4,6 +4,7 @@ import { loginCommand } from 'command/login';
 import { monitorAvailableTimesCommand } from 'command/monitorAvailableTimes';
 import { Bot } from 'grammy';
 import { monitorsCommand } from 'command/monitors';
+import { bookTimeCommand } from 'command/bookTime';
 
 export function registerCommands(bot: Bot): void {
   availableTimesCommand(bot);
@@ -11,4 +12,5 @@ export function registerCommands(bot: Bot): void {
   loginCommand(bot);
   monitorAvailableTimesCommand(bot);
   monitorsCommand(bot);
+  bookTimeCommand(bot);
 }
