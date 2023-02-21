@@ -50,7 +50,7 @@ export function bookTimeCommand(bot: Bot): void {
       date
     });
 
-    let message = '<b>Available Times</b>\n';
+    let message = '<b>Time Booked!</b>\n';
     message += `<b>Course:</b> ${courseString}\n`;
     message += `<b>Date:</b> ${date.getDate()}/${
       date.getMonth() + 1
