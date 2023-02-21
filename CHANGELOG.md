@@ -1,5 +1,17 @@
 Change log
 
+# [1.9.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.8.0...v1.9.0) (2023-02-21)
+
+
+### Bug Fixes
+
+* change booktime message header ([7d61ca8](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/7d61ca8d32efd1459ac9e1687cc2c2f3907dab4f))
+
+
+### Features
+
+* add booktime command to book earliest time on a day ([fa8a80c](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/fa8a80cf5836b235e3e07af460881f7fdc7de708))
+
 # [1.8.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.7.1...v1.8.0) (2023-02-20)
 
 
