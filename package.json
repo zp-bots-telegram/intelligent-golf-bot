@@ -75,6 +75,9 @@
     "toad-scheduler": "^2.2.0",
     "uuid": "^8.3.2"
   },
+  "resolutions": {
+    "npm/chalk": "^4.1.2"
+  },
   "volta": {
     "node": "16.19.1",
     "yarn": "3.4.1"
