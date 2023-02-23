@@ -144,7 +144,7 @@ export async function getCourseAvailability(
     }
   };
   const html = await request('/memberbooking/', options);
-  const rows = $('tr.cantreserve', html);
+  const rows = $('tr.cantreserve,tr.canreserve', html);
 
   const availableTimes: TimeSlot[] = [];
 
@@ -165,8 +165,6 @@ export async function getCourseAvailability(
         canBook: bookingButton.length > 0
       });
     }
-
-    console.log(availableTimes);
   });
 
   return availableTimes;
