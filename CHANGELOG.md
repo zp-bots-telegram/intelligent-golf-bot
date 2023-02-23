@@ -1,5 +1,13 @@
 Change log
 
+## [1.10.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.0...v1.10.1) (2023-02-23)
+
+
+### Bug Fixes
+
+* callback queries broken ([83d0be6](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/83d0be60e3fcdd490362d1b4198ac828a1ae5a0a))
+* semantic release not working correctly ([1b88fa3](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/1b88fa37f885213a0da10e23620810f44a3a3dea))
+
 # [1.10.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.9.0...v1.10.0) (2023-02-23)
 
 
