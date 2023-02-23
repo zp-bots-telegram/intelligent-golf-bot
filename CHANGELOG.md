@@ -1,5 +1,12 @@
 Change log
 
+## [1.10.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.1...v1.10.2) (2023-02-23)
+
+
+### Bug Fixes
+
+* also check for tr.canreserve when evaluating available times ([7a0cd4d](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/7a0cd4d28254298c19ee9ea67b7d9578aec7beba))
+
 ## [1.10.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.0...v1.10.1) (2023-02-23)
 
 
