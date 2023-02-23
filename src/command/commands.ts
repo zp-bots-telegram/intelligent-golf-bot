@@ -5,6 +5,8 @@ import { monitorCommand } from 'command/monitor';
 import { Bot } from 'grammy';
 import { monitorsCommand } from 'command/monitors';
 import { bookTimeCommand } from 'command/bookTime';
+import { autoBookingsCommand } from 'command/autoBookings';
+import { autoBookCommand } from 'command/autoBook';
 
 export function registerCommands(bot: Bot): void {
   availableTimesCommand(bot);
@@ -13,4 +15,6 @@ export function registerCommands(bot: Bot): void {
   monitorCommand(bot);
   monitorsCommand(bot);
   bookTimeCommand(bot);
+  autoBookCommand(bot);
+  autoBookingsCommand(bot);
 }

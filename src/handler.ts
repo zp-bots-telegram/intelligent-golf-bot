@@ -6,6 +6,7 @@ import { registerCommands } from 'command/commands';
 import { scheduledAvailableTimesMonitor } from 'scheduled/availableTimesMonitor';
 import { Bot, webhookCallback } from 'grammy';
 import { v4 as uuid } from 'uuid';
+import { scheduledAutoBookingsMonitor } from 'scheduled/autoBookingsMonitor';
 
 export async function handler(): Promise<void> {
   const token = process.env.BOT_TOKEN;
@@ -22,6 +23,7 @@ export async function handler(): Promise<void> {
   registerCommands(bot);
 
   scheduledAvailableTimesMonitor(bot);
+  scheduledAutoBookingsMonitor(bot);
 
   const host = getEnv('host');
   const secretPath = `/grammy/${uuid()}`;

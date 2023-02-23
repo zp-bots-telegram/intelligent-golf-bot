@@ -67,8 +67,11 @@ export function bookTimeCommand(bot: Bot): void {
         }\n<b>Course:</b> ${
           details.startingTee.split(' ')[0]
         }\n<b>Participants:</b> ${details.participants.join(', ')}`;
-        await ctx.reply(message, { parse_mode: 'HTML' });
+      } else {
+        message = '<b>Booking Failed!</b>';
       }
+
+      await ctx.reply(message, { parse_mode: 'HTML' });
     }
   });
 }

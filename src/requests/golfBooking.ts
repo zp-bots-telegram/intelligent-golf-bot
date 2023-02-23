@@ -44,6 +44,7 @@ interface Booking {
 interface TimeSlot {
   time: string;
   bookingForm: { [x: string]: string };
+  canBook: boolean;
 }
 
 export async function getBookings(
@@ -148,7 +149,7 @@ export async function getCourseAvailability(
   const availableTimes: TimeSlot[] = [];
 
   rows.each((i, row) => {
-    // const bookingLink = $('a.inlineBooking', row);
+    const bookingButton = $('a.inlineBooking', row);
     const peopleBooked = $('td.tbooked', row);
     const blocked = $('td.tblocked', row).length !== 0;
     const time = $('th', row).text();
@@ -158,8 +159,14 @@ export async function getCourseAvailability(
       bookingForm[field.attribs.name] = field.attribs.value;
     });
     if (peopleBooked.length === 0 && !blocked) {
-      availableTimes.push({ time, bookingForm });
+      availableTimes.push({
+        time,
+        bookingForm,
+        canBook: bookingButton.length > 0
+      });
     }
+
+    console.log(availableTimes);
   });
 
   return availableTimes;
@@ -185,7 +192,7 @@ export async function bookTimeSlot(
     html
   );
 
-  if (confirmation) {
+  if (confirmation.html()) {
     const details = parseBookingDetailsPage(html);
     return details;
   }
