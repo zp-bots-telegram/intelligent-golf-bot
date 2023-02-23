@@ -2,6 +2,7 @@
 build/
 logins.json
 monitors.json
+autoBookings.json
 
 
 ## Node Gitignore
