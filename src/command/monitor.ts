@@ -5,7 +5,7 @@ import { getLogin } from 'storage/logins';
 import { addMonitor } from 'storage/monitors';
 import { Bot } from 'grammy';
 
-export function monitorAvailableTimesCommand(bot: Bot): void {
+export function monitorCommand(bot: Bot): void {
   bot.on('message').command('monitor', async (ctx) => {
     const msg = ctx.msg;
     const command = msg.text;
