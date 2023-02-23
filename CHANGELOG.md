@@ -1,5 +1,17 @@
 Change log
 
+# [1.10.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.9.0...v1.10.0) (2023-02-23)
+
+
+### Bug Fixes
+
+* use a single cron job to avoid concurrency problems ([c053131](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/c053131886128168a3f12e7adff4d1024a5ca8ec))
+
+
+### Features
+
+* add autoBooking command ([832b432](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/832b432b92ccb24e692d0e42adf1e08e2b328ff3))
+
 # [1.9.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.8.0...v1.9.0) (2023-02-21)
 
 
