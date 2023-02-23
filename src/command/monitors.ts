@@ -4,8 +4,8 @@ import { Bot } from 'grammy';
 export function monitorsCommand(bot: Bot): void {
   bot.on('callback_query', async (ctx) => {
     const query = ctx.callbackQuery;
-    if (query.data) {
-      const id = query.data;
+    if (query.data && query.data.startsWith('monitor')) {
+      const id = query.data.split('-')[1];
       if (!(await deleteMonitor(id, query.from.id))) {
         await ctx.answerCallbackQuery('Monitor Delete Failed');
         return;
@@ -36,7 +36,9 @@ export function monitorsCommand(bot: Bot): void {
         await ctx.reply(message, {
           parse_mode: 'HTML',
           reply_markup: {
-            inline_keyboard: [[{ callback_data: monitor.id, text: 'Delete' }]]
+            inline_keyboard: [
+              [{ callback_data: `monitor-${monitor.id}`, text: 'Delete' }]
+            ]
           }
         });
       })

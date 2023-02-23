@@ -6,7 +6,7 @@ export function autoBookingsCommand(bot: Bot): void {
   bot.on('callback_query', async (ctx) => {
     const query = ctx.callbackQuery;
     if (query.data && query.data.startsWith('autobooking')) {
-      const id = query.data;
+      const id = query.data.split('-')[1];
       if (!(await deleteAutoBooking(id, query.from.id))) {
         await ctx.answerCallbackQuery('Auto Booking Delete Failed');
         return;
