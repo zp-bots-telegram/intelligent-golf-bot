@@ -107,12 +107,9 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
     }
   });
 
-  const job1 = new CronJob({ cronExpression: '* 59 23 * * *' }, task, {
-    preventOverrun: true
-  });
-  const job2 = new CronJob({ cronExpression: '* 0 0 * * *' }, task, {
+  const job1 = new CronJob({ cronExpression: '* 59,0 23,0 * * *' }, task, {
+    id: 'autoBooking',
     preventOverrun: true
   });
   scheduler.addCronJob(job1);
-  scheduler.addCronJob(job2);
 }
