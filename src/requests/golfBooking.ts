@@ -201,7 +201,7 @@ export async function bookTimeSlot(
     method: 'GET',
     baseUrl: 'https://cainhoewood.intelligentgolf.co.uk/',
     qs: {
-      numslots: 1,
+      numslots: 2,
       ...args.timeSlot.bookingForm
     }
   };
