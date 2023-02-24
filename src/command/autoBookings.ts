@@ -3,10 +3,10 @@ import { Bot } from 'grammy';
 import { Course } from 'requests/golfBooking';
 
 export function autoBookingsCommand(bot: Bot): void {
-  bot.on('callback_query', async (ctx) => {
+  bot.on('callback_query', async (ctx, next) => {
     const query = ctx.callbackQuery;
     if (query.data && query.data.startsWith('autobooking')) {
-      const id = query.data.split('-')[1];
+      const id = query.data.split(':')[1];
       if (!(await deleteAutoBooking(id, query.from.id))) {
         await ctx.answerCallbackQuery('Auto Booking Delete Failed');
         return;
@@ -14,6 +14,7 @@ export function autoBookingsCommand(bot: Bot): void {
       await ctx.deleteMessage();
       await ctx.answerCallbackQuery('Auto Booking Deleted');
     }
+    await next();
   });
 
   bot.on('message').command('autobookings', async (ctx) => {
@@ -40,7 +41,7 @@ export function autoBookingsCommand(bot: Bot): void {
             inline_keyboard: [
               [
                 {
-                  callback_data: `autobooking-${autoBooking.id}`,
+                  callback_data: `autobooking:${autoBooking.id}`,
                   text: 'Delete'
                 }
               ]

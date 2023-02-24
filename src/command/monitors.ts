@@ -2,10 +2,10 @@ import { deleteMonitor, getUsersMonitors } from 'storage/monitors';
 import { Bot } from 'grammy';
 
 export function monitorsCommand(bot: Bot): void {
-  bot.on('callback_query', async (ctx) => {
+  bot.on('callback_query', async (ctx, next) => {
     const query = ctx.callbackQuery;
     if (query.data && query.data.startsWith('monitor')) {
-      const id = query.data.split('-')[1];
+      const id = query.data.split(':')[1];
       if (!(await deleteMonitor(id, query.from.id))) {
         await ctx.answerCallbackQuery('Monitor Delete Failed');
         return;
@@ -13,6 +13,7 @@ export function monitorsCommand(bot: Bot): void {
       await ctx.deleteMessage();
       await ctx.answerCallbackQuery('Monitor Deleted');
     }
+    await next();
   });
 
   bot.on('message').command('monitors', async (ctx) => {
@@ -37,7 +38,7 @@ export function monitorsCommand(bot: Bot): void {
           parse_mode: 'HTML',
           reply_markup: {
             inline_keyboard: [
-              [{ callback_data: `monitor-${monitor.id}`, text: 'Delete' }]
+              [{ callback_data: `monitor:${monitor.id}`, text: 'Delete' }]
             ]
           }
         });
