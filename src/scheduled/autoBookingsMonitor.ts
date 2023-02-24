@@ -23,6 +23,7 @@ const loginCache: {
 export function scheduledAutoBookingsMonitor(bot: Bot): void {
   const scheduler = new ToadScheduler();
   const task = new AsyncTask('autoBookings', async () => {
+    console.log('Running auto booking: ', new Date().toTimeString());
     const autoBookings = await getAllAutoBookings();
     for (const userKey in autoBookings) {
       if (Object.hasOwnProperty.call(autoBookings, userKey)) {
@@ -107,7 +108,7 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
     }
   });
 
-  const job1 = new CronJob({ cronExpression: '* 59,0 23,0 * * *' }, task, {
+  const job1 = new CronJob({ cronExpression: '* 0,1,2,3,4,5 0 * * *' }, task, {
     id: 'autoBooking',
     preventOverrun: true
   });
