@@ -1,5 +1,13 @@
 Change log
 
+## [1.10.3](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.2...v1.10.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* callback queries not working with new format ([04536b2](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/04536b271bf57dcf841537fec72c26e74eae83f6))
+* run auto booking task for 6 consecutive minutes with logging ([a38b14f](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/a38b14f182acce208098d1828d228a921f948061))
+
 ## [1.10.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.1...v1.10.2) (2023-02-23)
 
 
