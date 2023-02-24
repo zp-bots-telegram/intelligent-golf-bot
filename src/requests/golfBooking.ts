@@ -190,9 +190,13 @@ export async function bookTimeSlot(
     html
   );
 
+  console.log(confirmation.html());
+
   if (confirmation.html()) {
     const details = parseBookingDetailsPage(html);
     return details;
+  } else {
+    console.log(html);
   }
   return null;
 }
