@@ -12,7 +12,7 @@ import { getLogin } from 'storage/logins';
 import { Bot } from 'grammy';
 import { RequestAPI, RequiredUriUrl } from 'request';
 
-const loginCache: {
+let loginCache: {
   [key: string]: RequestAPI<
     rp.RequestPromise<unknown>,
     rp.RequestPromiseOptions,
@@ -22,7 +22,7 @@ const loginCache: {
 
 export function scheduledAutoBookingsMonitor(bot: Bot): void {
   const scheduler = new ToadScheduler();
-  const task = new AsyncTask('autoBookings', async () => {
+  const autoBookingJob = new AsyncTask('autoBookings', async () => {
     console.log('Running auto booking: ', new Date().toTimeString());
     const autoBookings = await getAllAutoBookings();
     for (const userKey in autoBookings) {
@@ -51,6 +51,10 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
             course,
             date: startDate
           });
+
+          console.log(
+            `Found ${availability.length} available slots, earliest time ${availability[0]?.time}`
+          );
 
           const startTime = `${startDate
             .getUTCHours()
@@ -108,9 +112,27 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
     }
   });
 
-  const job1 = new CronJob({ cronExpression: '* 0,1,2,3,4,5 0 * * *' }, task, {
-    id: 'autoBooking',
-    preventOverrun: true
+  const clearCache = new AsyncTask('autoBookings', async () => {
+    loginCache = {};
   });
-  scheduler.addCronJob(job1);
+
+  const clearCacheJob = new CronJob(
+    { cronExpression: '0 0 23 * * *' },
+    clearCache
+  );
+
+  scheduler.addCronJob(clearCacheJob);
+
+  const autoBooking = new CronJob(
+    {
+      cronExpression: '* 0,1,2,3,4,5,6,7,8,9,10 0 * * *'
+    },
+    autoBookingJob,
+    {
+      id: 'autoBooking',
+      preventOverrun: true
+    }
+  );
+
+  scheduler.addCronJob(autoBooking);
 }
