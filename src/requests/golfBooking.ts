@@ -37,7 +37,7 @@ interface Booking {
   date: string;
   time: string;
   playerCount: string;
-  bookingId: string;
+  id: string;
   moreDetails: BookingDetails;
 }
 
@@ -65,13 +65,13 @@ export async function getBookings(
         bookingDetails.eq(3).find('a').attr('href')?.split('=')[1] ??
         'Unavailable';
 
-      parsedBookings.push({
+      parsedBookings[i] = {
         date,
         time,
         playerCount,
-        bookingId,
+        id: bookingId,
         moreDetails: await getBookingDetails(request, { bookingId })
-      });
+      };
     })
   );
 
@@ -122,6 +122,27 @@ export enum Course {
   Manor = 1,
   // eslint-disable-next-line no-unused-vars
   Castle = 2
+}
+
+export async function cancelBooking(
+  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
+  args: {
+    bookingId: string;
+  }
+): Promise<boolean> {
+  const options: RequestPromiseOptions = {
+    method: 'POST',
+    baseUrl: 'https://cainhoewood.intelligentgolf.co.uk/',
+    qs: {
+      edit: args.bookingId
+    },
+    formData: {
+      cancel: 'Yes'
+    },
+    resolveWithFullResponse: true
+  };
+  const html = await request('/member_teetime.php', options);
+  return html.req.res.statusCode === 200;
 }
 
 export async function getCourseAvailability(
