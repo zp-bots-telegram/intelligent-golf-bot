@@ -1,5 +1,18 @@
 Change log
 
+# [1.11.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.3...v1.11.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* always book two players ([cf2ba50](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/cf2ba50ca718762efb3f3e989ed0666e73d3cbf4))
+* remove cached logins once a day before the autobooking job begins ([e1478cc](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/e1478cccac315e1bc4be8dafda16b2cf01c5e872))
+
+
+### Features
+
+* delete bookings inline from bookings command ([d926770](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/d9267700cd92ca381f86fab752f84c3d4a10651f))
+
 ## [1.10.3](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.2...v1.10.3) (2023-02-24)
 
 
