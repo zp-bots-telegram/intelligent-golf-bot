@@ -1,5 +1,12 @@
 Change log
 
+## [1.11.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.11.0...v1.11.1) (2023-03-04)
+
+
+### Bug Fixes
+
+* add request object to login cache for user ([aa24d52](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/aa24d5280055e428d9d0ba282e8211da8328e797))
+
 # [1.11.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.10.3...v1.11.0) (2023-02-24)
 
 
