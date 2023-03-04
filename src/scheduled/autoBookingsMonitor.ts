@@ -36,10 +36,14 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
             followAllRedirects: true
           });
           const credentials = await getLogin(userId);
+          console.log(
+            `Logging in as ${userId} - Email: ${credentials.username}`
+          );
           await login(request, {
             username: credentials.username,
             password: credentials.password
           });
+          loginCache[userId] = request;
         }
         for (const autoBooking of userAutoBookings) {
           const { course, startDate, endDate } = autoBooking;
@@ -80,8 +84,6 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
           }
 
           availability = availability.reverse();
-
-          console.log('job running');
 
           let bookedSlot;
           let timeSlot;
