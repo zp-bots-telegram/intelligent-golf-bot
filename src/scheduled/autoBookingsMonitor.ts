@@ -89,7 +89,11 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
           let timeSlot;
           do {
             timeSlot = availability.pop();
-            console.log('trying to book', timeSlot?.time);
+            console.log(
+              'trying to book',
+              timeSlot?.time,
+              timeSlot?.bookingForm
+            );
             if (!timeSlot) break;
             bookedSlot = await bookTimeSlot(request, {
               timeSlot
