@@ -1,5 +1,12 @@
 Change log
 
+# [1.12.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.11.2...v1.12.0) (2023-07-24)
+
+
+### Features
+
+* expand autobook feature to work for any time slot, not just midnight slots ([4e10404](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/4e10404f536af6c69217d0306f6a3598f92e58d6))
+
 ## [1.11.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.11.1...v1.11.2) (2023-07-24)
 
 
