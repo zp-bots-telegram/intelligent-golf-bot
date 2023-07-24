@@ -23,7 +23,6 @@ let loginCache: {
 export function scheduledAutoBookingsMonitor(bot: Bot): void {
   const scheduler = new ToadScheduler();
   const autoBookingJob = new AsyncTask('autoBookings', async () => {
-    console.log('Running auto booking: ', new Date().toTimeString());
     const autoBookings = await getAllAutoBookings();
     for (const userKey in autoBookings) {
       if (Object.hasOwnProperty.call(autoBookings, userKey)) {
@@ -47,6 +46,16 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
         }
         for (const autoBooking of userAutoBookings) {
           const { course, startDate, endDate } = autoBooking;
+          const timeToStartDate =
+            new Date(startDate).setHours(0, 0, 0, 0) - new Date().getTime();
+          if (timeToStartDate > 1209600000) {
+            console.log(
+              `Skipping autoBooking, ${
+                timeToStartDate / 1000 / 60 / 60 / 24
+              } days remaining`
+            );
+            continue;
+          }
           if (new Date() > endDate) {
             await deleteAutoBooking(autoBooking.id, userId);
           }
@@ -129,16 +138,28 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
 
   scheduler.addCronJob(clearCacheJob);
 
-  const autoBooking = new CronJob(
+  const autoBookingNightly = new CronJob(
     {
       cronExpression: '* 0,1,2,3,4,5,6,7,8,9,10 0 * * *'
     },
     autoBookingJob,
     {
-      id: 'autoBooking',
+      id: 'autoBookingNightly',
       preventOverrun: true
     }
   );
 
-  scheduler.addCronJob(autoBooking);
+  const autoBookingMinutely = new CronJob(
+    {
+      cronExpression: '10,20,30,40,50,0 * * * * *'
+    },
+    autoBookingJob,
+    {
+      id: 'autoBookingMinutely',
+      preventOverrun: true
+    }
+  );
+
+  scheduler.addCronJob(autoBookingNightly);
+  scheduler.addCronJob(autoBookingMinutely);
 }
