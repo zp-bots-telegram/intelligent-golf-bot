@@ -1,5 +1,12 @@
 Change log
 
+## [1.12.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.0...v1.12.1) (2023-07-24)
+
+
+### Bug Fixes
+
+* remove log and take 1 minute off the start date filter ([c851b62](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/c851b628fc7ab6ec3aa4303f9dc4a4d403e20482))
+
 # [1.12.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.11.2...v1.12.0) (2023-07-24)
 
 
