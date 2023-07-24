@@ -48,12 +48,7 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
           const { course, startDate, endDate } = autoBooking;
           const timeToStartDate =
             new Date(startDate).setHours(0, 0, 0, 0) - new Date().getTime();
-          if (timeToStartDate > 1209600000) {
-            console.log(
-              `Skipping autoBooking, ${
-                timeToStartDate / 1000 / 60 / 60 / 24
-              } days remaining`
-            );
+          if (timeToStartDate > 1209540000) {
             continue;
           }
           if (new Date() > endDate) {
