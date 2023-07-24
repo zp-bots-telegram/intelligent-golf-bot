@@ -32,7 +32,7 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
         let request = loginCache[userId];
         if (!request) {
           request = rp.defaults({
-            jar: true,
+            jar: rp.jar(),
             followAllRedirects: true
           });
           const credentials = await getLogin(userId);
