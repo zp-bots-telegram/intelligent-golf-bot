@@ -18,7 +18,7 @@ export function scheduledAvailableTimesMonitor(bot: Bot): void {
         const userId = Number.parseInt(userKey, 10);
         const userMonitors = monitors[userKey];
         const request = rp.defaults({
-          jar: true,
+          jar: rp.jar(),
           followAllRedirects: true
         });
         const credentials = await getLogin(userId);

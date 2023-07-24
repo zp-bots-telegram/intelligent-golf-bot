@@ -17,7 +17,7 @@ export function loginCommand(bot: Bot): void {
     const username = match[1];
     const password = match[2];
 
-    const request = rp.defaults({ jar: true, followAllRedirects: true });
+    const request = rp.defaults({ jar: rp.jar(), followAllRedirects: true });
 
     if (!msg.from) {
       return;

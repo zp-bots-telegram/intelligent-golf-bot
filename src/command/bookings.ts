@@ -10,7 +10,7 @@ export function bookingsCommand(bot: Bot): void {
     if (query.data && query.data.startsWith('bookings')) {
       const bookingId = query.data.split(':')[1];
 
-      const request = rp.defaults({ jar: true, followAllRedirects: true });
+      const request = rp.defaults({ jar: rp.jar(), followAllRedirects: true });
 
       const credentials = await getLogin(query.from.id);
 
@@ -32,7 +32,7 @@ export function bookingsCommand(bot: Bot): void {
   bot.on('message').command('bookings', async (ctx) => {
     const msg = ctx.msg;
 
-    const request = rp.defaults({ jar: true, followAllRedirects: true });
+    const request = rp.defaults({ jar: rp.jar(), followAllRedirects: true });
 
     const credentials = await getLogin(msg.from.id);
 

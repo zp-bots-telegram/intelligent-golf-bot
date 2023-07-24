@@ -17,7 +17,7 @@ export function bookTimeCommand(bot: Bot): void {
     const command = msg.text;
     const match = /\/booktime (manor|castle) (.*)/i.exec(command);
 
-    const request = rp.defaults({ jar: true, followAllRedirects: true });
+    const request = rp.defaults({ jar: rp.jar(), followAllRedirects: true });
 
     if (match?.length !== 3) {
       await ctx.reply('Usage is /availableTimes (Manor/Castle) (date)');
