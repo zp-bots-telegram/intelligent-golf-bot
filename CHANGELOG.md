@@ -1,5 +1,13 @@
 Change log
 
+## [1.11.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.11.1...v1.11.2) (2023-07-24)
+
+
+### Bug Fixes
+
+* individual cookie jar for each user for auto booking ([d389afe](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/d389afeb0a4c291a483e8599d2180ee8b94bb2ac))
+* use rp.jar() instead of jar: true so we don't share cookies ([16ea830](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/16ea83001c61f398a690405a7499c14c1c6d62af))
+
 ## [1.11.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.11.0...v1.11.1) (2023-03-04)
 
 
