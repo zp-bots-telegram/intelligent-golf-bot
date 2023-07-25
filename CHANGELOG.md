@@ -1,5 +1,12 @@
 Change log
 
+## [1.12.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.1...v1.12.2) (2023-07-25)
+
+
+### Bug Fixes
+
+* change autobooking scheduled task to run on every 30th second, not every 10 seconds ([80aada0](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/80aada0c0d63f680f826cff284d7fbe624f62c96))
+
 ## [1.12.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.0...v1.12.1) (2023-07-24)
 
 
