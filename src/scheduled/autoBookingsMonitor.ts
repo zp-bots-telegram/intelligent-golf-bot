@@ -146,7 +146,7 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
 
   const autoBookingMinutely = new CronJob(
     {
-      cronExpression: '10,20,30,40,50,0 * * * * *'
+      cronExpression: '30 * * * * *'
     },
     autoBookingJob,
     {
