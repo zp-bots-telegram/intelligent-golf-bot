@@ -32,7 +32,7 @@ export async function handler(): Promise<void> {
 
   const app = express();
   app.use(json());
-  app.use(secretPath, webhookCallback(bot, 'express'));
+  app.use(secretPath, webhookCallback(bot, 'express', undefined, 60000));
   app.listen(4123, () => {
     console.log('Webhook Server Started!');
   });
