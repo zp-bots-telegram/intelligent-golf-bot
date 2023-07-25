@@ -2,7 +2,7 @@
 const localtunnel = require('localtunnel');
 
 export async function devSetup(): Promise<void> {
-  const tunnel = await localtunnel({ port: 3000 });
+  const tunnel = await localtunnel({ port: 4123 });
 
   process.env.host = tunnel.url;
 }
