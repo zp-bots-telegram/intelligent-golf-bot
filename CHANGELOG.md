@@ -1,5 +1,12 @@
 Change log
 
+## [1.12.4](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.3...v1.12.4) (2023-07-28)
+
+
+### Bug Fixes
+
+* add logging for autobookings being skipped ([0658a82](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/0658a82deeb76436761f3bd54f3402490ed2e5e4))
+
 ## [1.12.3](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.2...v1.12.3) (2023-07-28)
 
 
