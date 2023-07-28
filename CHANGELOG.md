@@ -1,5 +1,12 @@
 Change log
 
+## [1.12.5](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.4...v1.12.5) (2023-07-28)
+
+
+### Bug Fixes
+
+* incorrect time logic for skipping 14 days in advance ([76ac1e2](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/76ac1e23fdf1d3ee9d674df88456cd83e22aa39d))
+
 ## [1.12.4](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.3...v1.12.4) (2023-07-28)
 
 
