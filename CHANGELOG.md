@@ -1,5 +1,13 @@
 Change log
 
+## [1.12.3](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.2...v1.12.3) (2023-07-28)
+
+
+### Bug Fixes
+
+* change autobookings to start an hour earlier due to UTC vs BST timezones ([b6e6dcb](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/b6e6dcb350e4409f9eba973425aba3fd6c7ac83a))
+* increase timeout to 60 seconds for any requests ([9b6825e](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/9b6825eaa5eb4050180aadfac67257d00d0e8dad))
+
 ## [1.12.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.1...v1.12.2) (2023-07-25)
 
 
