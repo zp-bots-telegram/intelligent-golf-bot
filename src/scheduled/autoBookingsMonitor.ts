@@ -49,6 +49,11 @@ export function scheduledAutoBookingsMonitor(bot: Bot): void {
           const timeToStartDate =
             new Date(startDate).setHours(0, 0, 0, 0) - new Date().getTime();
           if (timeToStartDate > 1205940000) {
+            console.log(
+              `Skipping autobooking, waiting for ${
+                (timeToStartDate - 1205940000) / 1000
+              } seconds until booking`
+            );
             continue;
           }
           if (new Date() > endDate) {
