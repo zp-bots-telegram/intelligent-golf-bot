@@ -3,6 +3,7 @@ build/
 logins.json
 monitors.json
 autoBookings.json
+recurringBookings.json
 
 
 ## Node Gitignore

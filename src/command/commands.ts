@@ -7,6 +7,8 @@ import { monitorsCommand } from 'command/monitors';
 import { bookTimeCommand } from 'command/bookTime';
 import { autoBookingsCommand } from 'command/autoBookings';
 import { autoBookCommand } from 'command/autoBook';
+import { recurringBookingsCommand } from 'command/recurringBookings';
+import { addRecurringBookingCommand } from 'command/addRecurringBooking';
 
 export function registerCommands(bot: Bot): void {
   availableTimesCommand(bot);
@@ -17,4 +19,6 @@ export function registerCommands(bot: Bot): void {
   bookTimeCommand(bot);
   autoBookCommand(bot);
   autoBookingsCommand(bot);
+  recurringBookingsCommand(bot);
+  addRecurringBookingCommand(bot);
 }
