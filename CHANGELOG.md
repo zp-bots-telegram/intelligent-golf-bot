@@ -1,5 +1,12 @@
 Change log
 
+# [1.13.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.5...v1.13.0) (2023-09-19)
+
+
+### Features
+
+* add automated recurring bookings commands and monitors ([796cb78](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/796cb786db3a9ee719aedbd47edb70fcc438f91f))
+
 ## [1.12.5](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.4...v1.12.5) (2023-07-28)
 
 
