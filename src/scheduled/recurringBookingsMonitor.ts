@@ -42,10 +42,15 @@ export function scheduledRecurringBookingsMonitor(bot: Bot): void {
             endDateInThreeWeeks
           );
 
+          const dayName = autoBooking.startDate.toLocaleDateString('en-GB', {
+            weekday: 'long'
+          });
+
           let message = '<b>Recurring Booking Activated!</b>\n';
           message += `<b>Course:</b> ${Course[autoBooking.course]}\n`;
-          message += `<b>Start Date:</b> ${autoBooking.startDate.toISOString()}\n`;
-          message += `<b>End Date:</b> ${autoBooking.endDate.toISOString()}`;
+          message += `<b>Day:</b> ${dayName}\n`;
+          message += `<b>Start Time:</b> ${autoBooking.startDate.toLocaleTimeString()}\n`;
+          message += `<b>End Time:</b> ${autoBooking.endDate.toLocaleTimeString()}\n`;
           await bot.api.sendMessage(userId, message, {
             parse_mode: 'HTML',
             reply_markup: {

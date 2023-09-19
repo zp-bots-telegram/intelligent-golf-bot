@@ -35,9 +35,13 @@ export function recurringBookingsCommand(bot: Bot): void {
     await Promise.all(
       recurringBookings.map(async (recurringBooking) => {
         const { startDate, endDate, course } = recurringBooking;
+        const dayName = startDate.toLocaleDateString('en-GB', {
+          weekday: 'long'
+        });
         let message = `<b>Course:</b> ${Course[course]}\n`;
-        message += `<b>Start Date:</b> ${startDate.toISOString()}\n`;
-        message += `<b>End Date:</b> ${endDate.toISOString()}`;
+        message += `<b>Day:</b> ${dayName}\n`;
+        message += `<b>Start Time:</b> ${startDate.toLocaleTimeString()}\n`;
+        message += `<b>End Time:</b> ${endDate.toLocaleTimeString()}\n`;
         await ctx.reply(message, {
           parse_mode: 'HTML',
           reply_markup: {

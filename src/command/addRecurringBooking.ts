@@ -50,10 +50,15 @@ export function addRecurringBookingCommand(bot: Bot): void {
 
     await addRecurringBooking(msg.from.id, course, start, end);
 
+    const dayName = start.toLocaleDateString('en-GB', {
+      weekday: 'long'
+    });
+
     let message = '<b>Recurring Booking Added</b>\n';
     message += `<b>Course:</b> ${courseString}\n`;
-    message += `<b>Start Date:</b> ${start.toISOString()}\n`;
-    message += `<b>End Date:</b> ${end.toISOString()}\n`;
+    message += `<b>Day:</b> ${dayName}\n`;
+    message += `<b>Start Time:</b> ${start.toLocaleTimeString()}\n`;
+    message += `<b>End Time:</b> ${end.toLocaleTimeString()}\n`;
     message += `<b>Note:</b> The first auto booking will be in three weeks time`;
 
     await ctx.reply(message, { parse_mode: 'HTML' });
