@@ -1,5 +1,12 @@
 Change log
 
+## [1.13.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.13.0...v1.13.1) (2023-09-19)
+
+
+### Bug Fixes
+
+* change formatting of the day and time in recurring booking commands ([305113b](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/305113b82881c9c6982a7d657c3e606980f310ab))
+
 # [1.13.0](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.12.5...v1.13.0) (2023-09-19)
 
 
