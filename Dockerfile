@@ -1,4 +1,4 @@
-FROM node:18.17.0-alpine
+FROM node:20.12.2-alpine
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -6,7 +6,7 @@ COPY . .
 RUN yarn install --frozen-lockfile
 RUN yarn run build
 
-FROM node:18.17.0-alpine
+FROM node:20.12.2-alpine
 ENV NODE_ENV=production
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

@@ -165,21 +165,23 @@ export async function getCourseAvailability(
     }
   };
   const html = await request('/memberbooking/', options);
-  const rows = $('tr.cantreserve,tr.canreserve', html);
+  const rows = $(
+    'tr.cantreserve:not(tr.empty-row),tr.canreserve:not(tr.empty-row)',
+    html
+  );
 
   const availableTimes: TimeSlot[] = [];
 
   rows.each((i, row) => {
     const bookingButton = $('a.inlineBooking', row);
-    const peopleBooked = $('td.tbooked', row);
-    const blocked = $('td.tblocked', row).length !== 0;
+    const peopleBooked = $('span.player-name', row);
     const time = $('th', row).text();
-    const form = $('td form > input', row);
+    const form = $('form fieldset > input', row);
     const bookingForm: { [x: string]: string } = {};
     form.toArray().forEach((field) => {
       bookingForm[field.attribs.name] = field.attribs.value;
     });
-    if (peopleBooked.length === 0 && !blocked) {
+    if (peopleBooked.length === 0) {
       availableTimes.push({
         time,
         bookingForm,
