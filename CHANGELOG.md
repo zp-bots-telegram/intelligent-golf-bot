@@ -1,5 +1,12 @@
 Change log
 
+## [1.13.2](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.13.1...v1.13.2) (2024-04-19)
+
+
+### Bug Fixes
+
+* website design changes broke booking and autobooking commands ([1adcd6f](https://github.com/zp-bots-telegram/intelligent-golf-bot/commit/1adcd6f76a80c9fabb60022fdd172798deacb98e))
+
 ## [1.13.1](https://github.com/zp-bots-telegram/intelligent-golf-bot/compare/v1.13.0...v1.13.1) (2023-09-19)
 
 
